@@ -9,7 +9,7 @@ class Serializr
     NOT_GIVEN = Object.new
 
     def [](object = NOT_GIVEN, options = {})
-      cls = collection_class_cache[self] ||= new_collection_class(self)
+      cls = collection_class_cache[self]
 
       if object == NOT_GIVEN
         cls
@@ -39,14 +39,12 @@ class Serializr
     end
 
     def collection_class_cache
-      @collection_class_cache ||= {}
-    end
-
-    def new_collection_class(serializer)
-      Class.new(serializer) do
-        def as_json
-          serializer = self.class.superclass
-          object.map { |obj| serializer.new(obj, options).as_json }
+      @collection_class_cache ||= Hash.new do |_, cls|
+        Class.new(cls) do
+          def as_json
+            serializer = self.class.superclass
+            object.map { |obj| serializer.new(obj, options).as_json }
+          end
         end
       end
     end

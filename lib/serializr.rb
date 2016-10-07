@@ -10,21 +10,14 @@ class Serializr
 
     def [](object = NOT_GIVEN, options = {})
       cls = collection_class_cache[self]
-
-      if object == NOT_GIVEN
-        cls
-      else
-        cls.new(object, options)
-      end
+      object == NOT_GIVEN ? cls : cls.new(object, options)
     end
 
     def attributes(*attr_names)
-      @attrs ||= []
-
       if attr_names.empty?
-        @attrs
+        @attrs ||= []
       else
-        @attrs.concat(attr_names)
+        (@attrs ||= []).concat(attr_names)
         attr_names.each { |attr| define_attribute_method(attr) }
       end
     end
@@ -62,9 +55,7 @@ class Serializr
   end
 
   def as_json
-    Hash[self.class.attributes.map do |attr|
-      [attr, public_send(attr).as_json]
-    end]
+    Hash[self.class.attributes.map { |attr| [attr, public_send(attr).as_json] }]
   end
 
   private

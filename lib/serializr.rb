@@ -62,3 +62,5 @@ class Serializr
 
   attr_reader :object, :options
 end
+
+require 'serializr/railtie' if defined?(Rails)

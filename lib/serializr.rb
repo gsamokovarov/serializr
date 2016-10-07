@@ -31,10 +31,10 @@ class Serializr
 
     private
 
-    def inherited(klass)
+    def inherited(cls)
       unless self == Serializr
         attrs_copy = [].concat(@attrs ||= [])
-        klass.instance_variable_set(:@attrs, attrs_copy)
+        cls.instance_variable_set(:@attrs, attrs_copy)
       end
     end
 

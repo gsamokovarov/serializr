@@ -1,6 +1,3 @@
-require 'serializr/attributes'
-require 'serializr/collection'
-
 # The serializer name is taken as a gem, that's why the broken name.
 #
 # I wanna introduce a really simple serializer, so we don't depend on the
@@ -8,8 +5,58 @@ require 'serializr/collection'
 #
 # This will live in it's own gem, eventually.
 class Serializr
-  extend Attributes
-  extend Collection
+  class << self
+    NOT_GIVEN = Object.new
+
+    def [](object = NOT_GIVEN, options = {})
+      cls = collection_class_cache[self] ||= new_collection_class(self)
+
+      if object == NOT_GIVEN
+        cls
+      else
+        cls.new(object, options)
+      end
+    end
+
+    def attributes(*attr_names)
+      @attrs ||= []
+
+      if attr_names.empty?
+        @attrs
+      else
+        @attrs.concat(attr_names)
+        attr_names.each { |attr| define_attribute_method(attr) }
+      end
+    end
+
+    private
+
+    def inherited(klass)
+      unless self == Serializr
+        attrs_copy = [].concat(@attrs ||= [])
+        klass.instance_variable_set(:@attrs, attrs_copy)
+      end
+    end
+
+    def collection_class_cache
+      @collection_class_cache ||= {}
+    end
+
+    def new_collection_class(serializer)
+      Class.new(serializer) do
+        def as_json
+          serializer = self.class.superclass
+          object.map { |obj| serializer.new(obj, options).as_json }
+        end
+      end
+    end
+
+    def define_attribute_method(attr_name)
+      class_eval <<-RUBY, __FILE__, __LINE__ + 1
+        def #{attr_name}() object.#{attr_name} end
+      RUBY
+    end
+  end
 
   def initialize(object, options = {})
     @object  = object

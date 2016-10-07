@@ -14,7 +14,7 @@ class Serializr
           if resource.respond_to?(:to_ary)
             # Assume a collection if the resource responds to #to_ary. The
             # regular arrays and ActiveRecord::Relations do and will be
-            # represented as arrays, while hashes won't be
+            # represented as arrays, while hashes won't be.
             inferred = serializer_class_cache[resource.to_ary.first.class]
             inferred[] if inferred
           else

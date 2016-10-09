@@ -1,6 +1,6 @@
 class Serializr
-  # Extension for AbstactController::Base subclasses like ActionController::Base
-  # or ActionController::Metal.
+  # Extension for AbstactController::Metal subclasses like
+  # ActionController::Base or ActionController::API.
   #
   # Introduces a `:serializer` option that is automatically inferred by the
   # resource to be rendered in `render :json`. Setting it explicitly prevents

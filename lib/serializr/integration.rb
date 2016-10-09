@@ -1,11 +1,12 @@
 class Serializr
-  # Extension for AbstactController::Metal subclasses like
+  # Integration for AbstactController::Metal subclasses like
   # ActionController::Base or ActionController::API.
   #
   # Introduces a `:serializer` option that is automatically inferred by the
-  # resource to be rendered in `render :json`. Setting it explicitly prevents
-  # the inferring altogether.
-  module AbstractController
+  # resource to be rendered in `render :json`.
+  #
+  # Setting it explicitly prevents the inferring altogether.
+  module Integration
     def _normalize_options(options)
       # The resource can be nil, check if it is explicitly passed as such.
       if options.key?(:json)

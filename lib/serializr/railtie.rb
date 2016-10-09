@@ -1,14 +1,14 @@
 class Serializr
   class Railtie < ::Rails::Railtie
     initializer 'serializr.initialize' do
-      require 'serializr/abstract_controller'
+      require 'serializr/integration'
 
       # For Rails 5, automatically include this in the API controllers.
       if defined?(ActionController::API)
-        ActionController::API.include(::Serializr::AbstractController)
+        ActionController::API.include(::Serializr::Integration)
       end
 
-      ActionController::Base.include(::Serializr::AbstractController)
+      ActionController::Base.include(::Serializr::Integration)
     end
   end
 end

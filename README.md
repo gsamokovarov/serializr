@@ -176,7 +176,7 @@ class ApplicationSerializer < Serializr
   def render_many(objects, serializer: nil)
     return [] if objects.blank?
 
-    serializer ||= serializer_class_cache[objects.to_ary.first.class][]
+    serializer ||= serializer_class_cache[objects.first.class][]
     serializer.new(objects)
   end
 end

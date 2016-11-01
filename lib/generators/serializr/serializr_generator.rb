@@ -28,7 +28,7 @@ class SerializrGenerator < Rails::Generators::NamedBase
   end
 
   def generate_application_serilzer
-    if self.behavior == :invoke && !application_serilzer_exist?
+    if behavior == :invoke && !application_serilzer_exist?
       template 'application_serializr.rb', application_serilzer_file_name
     end
   end

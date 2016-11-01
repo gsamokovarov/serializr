@@ -1,9 +1,3 @@
-# The serializer name is taken as a gem, that's why the broken name.
-#
-# I wanna introduce a really simple serializer, so we don't depend on the
-# overblown active_model_serializers.
-#
-# This will live in it's own gem, eventually.
 class Serializr
   class << self
     NOT_GIVEN = Object.new
@@ -25,10 +19,10 @@ class Serializr
     private
 
     def inherited(cls)
-      unless self == Serializr
-        attrs_copy = [].concat(@attrs ||= [])
-        cls.instance_variable_set(:@attrs, attrs_copy)
-      end
+      return if self == Serializr
+
+      attrs_copy = [].concat(@attrs ||= [])
+      cls.instance_variable_set(:@attrs, attrs_copy)
     end
 
     def collection_class_cache
@@ -55,7 +49,9 @@ class Serializr
   end
 
   def as_json
-    Hash[self.class.attributes.map { |attr| [attr, public_send(attr).as_json] }]
+    Hash[self.class.attributes.map do |attr|
+      [attr, public_send(attr).as_json]
+    end]
   end
 
   private

@@ -1,3 +1,1 @@
 require 'serializr'
-
-Serializer = Serializr

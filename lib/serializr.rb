@@ -63,4 +63,7 @@ class Serializr
   attr_reader :object, :options
 end
 
+# Let's get the constant, even if we don't explicitly `require 'serializer'`.
+Serializer = Serializr
+
 require 'serializr/railtie' if defined?(Rails)

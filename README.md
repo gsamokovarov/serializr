@@ -151,7 +151,7 @@ class ApplicationSerializer < Serializr
   end
 
   # Because I'm sure you gonna ask: how do I render associations. Where are the
-  # `has_one` and `has_many` class macros.
+  # `has_one` and `has_many` class macros?
   #
   # The answers is: you don't need those macros. You can use similar methods
   # like the ones below to render the associations with plain old boring Ruby

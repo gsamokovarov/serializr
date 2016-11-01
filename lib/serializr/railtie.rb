@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Serializr
   class Railtie < ::Rails::Railtie
     initializer 'serializr.initialize' do

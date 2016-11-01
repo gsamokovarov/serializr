@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Serializr
   # Integration for AbstactController::Metal subclasses like
   # ActionController::Base or ActionController::API.

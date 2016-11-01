@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../serializr/serializr_generator'
 
 class SerializerGenerator < SerializrGenerator

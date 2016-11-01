@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Serializr
   class << self
     NOT_GIVEN = Object.new

@@ -23,4 +23,12 @@ class SerializrGeneratorTest < Rails::Generators::TestCase
       assert_match(/attributes :id, :name, :email/, content)
     end
   end
+
+  test '--parent usage' do
+    run_generator %w(User --parent Serializr)
+
+    assert_file "app/serializers/user_serializer.rb" do |content|
+      assert_match(/class UserSerializer < Serializr/, content)
+    end
+  end
 end

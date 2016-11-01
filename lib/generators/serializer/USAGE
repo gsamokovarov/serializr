@@ -1,0 +1,19 @@
+Description:
+    Stubs out a new serializer. Pass the serializer name, either CamelCased or
+    under_scored and an optional list of attribute pairs as arguments.
+
+    Attribute pairs are field arguments specifying the exposed serializer's
+    JSON object attributes.
+
+    Finally, if --parent option is given, it's used as superclass of the
+    created serializer. The default parent is ApplicationSerializer, that you
+    can use in the same way ApplicationController: a place for common utilities
+    shared between all the serializers.
+
+Example:
+    `rails generate serializer User`
+
+        This will create:
+
+            app/serializers/application_serializer.rb
+            app/serializers/user_serializer.rb

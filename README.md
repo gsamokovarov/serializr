@@ -108,7 +108,7 @@ cool, you know. 😎
 ```ruby
 class FriendsController < ApplicationController
   def index
-    user = User.friends_of(params[:id])
+    friends = User.friends_of(params[:id])
 
     render json: friends, serializer: UserSerializer[]
   end

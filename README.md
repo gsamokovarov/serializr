@@ -144,17 +144,45 @@ class ApplicationSerializer < Serializr
   # JSON responses.
   inlcude Rails.application.routes.url_helpers
 
-  EPOCH_TIME = Time.at(0).in_time_zone('UTC')
+  cattr_reader :serializer_class_cache do
+    Hash.new do |hash, cls|
+      hash[cls] = "#{cls}Serializer".constantize
+    end
+  end
 
-  # You may wanna render this timestamp instead of `null` for unset timestamps.
-  # Or do whatever, really. I'm not your parents.
-  def render_timestamp(timestamp)
-    timestamp || EPOCH_TIME
+  # Because I'm sure you gonna ask: how do I render associations. Where are the
+  # `has_one` and `has_many` class macros.
+  #
+  # The answers is: you don't need those macros. You can use similar methods
+  # like the ones below to render the associations with plain old boring Ruby
+  # methods.
+  #
+  # class UserSerializer < ApplicationSerializer
+  #   attributes :card
+  #
+  #   def card
+  #     render_one(object.credit_card)
+  #   end
+  # end
+  #
+  # No extra DSL, but still: clean, consise and flexible view code.
+  def render_one(object, serializer: nil)
+    return unless object
+
+    serializer ||= serializer_class_cache[object.class]
+    serializer.new(object)
+  end
+
+  def render_many(objects, serializer: nil)
+    return [] if objects.blank?
+
+    serializer ||= serializer_class_cache[objects.to_ary.first.class][]
+    serializer.new(objects)
   end
 end
 ```
 
-### 1️⃣  Last Thing, For Real This Time
+### ✌️  Last Thing
 
 Serializr? Really? I know. It's fine.
 

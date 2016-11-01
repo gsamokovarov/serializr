@@ -1,11 +1,11 @@
 # Serializr
 
-Welcome to serializr! Serializr is a library for creating canonical JSON
-representation of objects for your RESTful APIs.
+Serializr is a library for creating canonical JSON representation of objects
+for your RESTful APIs.
 
-Think of serializers as the view layer of your application. Not of the only way
-JSON representation of an object, but the representation you wanna give them
-for your API.
+Think of the serializers as the view layer of your application. They are not
+the only JSON representation of an object, but they are _the_ representation
+you wanna show to the API.
 
 ## Installation
 
@@ -58,10 +58,10 @@ class UserSerializer < ApplicationSerializer
 end
 ```
 
-That's better. Yeah, your serializers can render fields your object don't
-respond to. This is a feature!
+That's fine. Your serializers can render fields your object don't respond to.
 
-To render the JSON object, you just need to say the following in your controller:
+Now, to render the JSON object, you need to say the following in your
+controller:
 
 ```ruby
 class UsersController < ApplicationController
@@ -103,14 +103,14 @@ end
 Being explicit here may have performance benefits, as to guess the Serializer
 class to use, we need to unroll the collection. The explicit usage, unarguably,
 looks pretty awesome as well, so you can wow your friends! Which, is always
-cool. 😎
+cool, you know. 😎
 
 ```ruby
 class FriendsController < ApplicationController
   def index
     user = User.friends_of(params[:id])
 
-    render json: friends, serializr: UserSerializer[]
+    render json: friends, serializer: UserSerializer[]
   end
 end
 ```
@@ -153,6 +153,14 @@ class ApplicationSerializer < Serializr
   end
 end
 ```
+
+### 1️⃣  Last Thing, For Real
+
+Serializr? Where is the e? I know. It's fine.
+
+You can require `serializr`, you can require `serializer` as well. The
+constants? Both of `Serializr` and `Serializer` point to the same thing. Same
+for the generators. Use whatever your brain and 🖐 like.
 
 ## Contributing
 

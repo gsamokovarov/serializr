@@ -32,8 +32,8 @@ class Serializr
     private
 
     def serializer_class_cache
-      @@_serializer_class_cache ||= Hash.new do |_, cls|
-        "#{cls}Serializer".safe_constantize ||
+      @@_serializer_class_cache ||= Hash.new do |hash, cls|
+        hash[cls] = "#{cls}Serializer".safe_constantize ||
           # Try to infer the superclass, if someone let a serializer for it and
           # not the concrete classes. Don't go deeper, though, just one level
           # is enough.

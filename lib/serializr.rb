@@ -26,8 +26,8 @@ class Serializr
     end
 
     def collection_class_cache
-      @collection_class_cache ||= Hash.new do |_, cls|
-        Class.new(cls) do
+      @collection_class_cache ||= Hash.new do |hash, cls|
+        hash[cls] = Class.new(cls) do
           def as_json
             serializer = self.class.superclass
             object.map { |obj| serializer.new(obj, options).as_json }

@@ -27,7 +27,7 @@ The output should hint that the generator created two files:
     create  app/serializers/application_serializer.rb
     create  app/serializers/user_serializer.rb
 
-The `user_serializer.rb` file contains:
+The `app/serializers/user_serializer.rb` file should contain:
 
 ```ruby
 class UserSerializer < ApplicationSerializer

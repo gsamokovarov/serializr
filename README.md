@@ -154,9 +154,9 @@ class ApplicationSerializer < Serializr
 end
 ```
 
-### 1️⃣  Last Thing, For Real
+### 1️⃣  Last Thing, For Real This Time
 
-Serializr? Where is the e? I know. It's fine.
+Serializr? Really? I know. It's fine.
 
 You can require `serializr`, you can require `serializer` as well. The
 constants? Both of `Serializr` and `Serializer` point to the same thing. Same

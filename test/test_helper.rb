@@ -1,12 +1,17 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
+require 'rails'
+require 'rails/generators'
+
 require 'serializr'
-require 'active_support/all'
+require 'generators/serializr/serializr_generator'
+
 require 'minitest/autorun'
 
 module JsonAssertions
   def assert_as_json(object, expected)
-    assert_equal normalize_jsonable(expected.as_json), normalize_jsonable(object.as_json)
+    assert_equal normalize_jsonable(expected.as_json),
+                 normalize_jsonable(object.as_json)
   end
 
   private

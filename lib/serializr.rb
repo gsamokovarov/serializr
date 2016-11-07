@@ -31,8 +31,12 @@ class Serializr
       @@collection_class_cache ||= Hash.new do |hash, cls|
         hash[cls] = Class.new(cls) do
           def as_json
-            serializer = self.class.superclass
-            object.map { |obj| serializer.new(obj, options).as_json }
+            serializer = self.class.superclass.new(nil, options)
+
+            object.map do |obj|
+              serializer.object = obj
+              serializer.as_json
+            end
           end
         end
       end
@@ -56,9 +60,9 @@ class Serializr
     end]
   end
 
-  private
+  protected
 
-  attr_reader :object, :options
+  attr_accessor :object, :options
 end
 
 # Let's get the constant, even if we don't explicitly `require 'serializer'`.

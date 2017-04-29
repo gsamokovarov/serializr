@@ -61,6 +61,12 @@ class SerializrTest < ActiveSupport::TestCase
     assert_as_json serializer, [foo: :foo, bar: :bar, foobar: :special, quux: :quux]
   end
 
+  test '#as_json with options' do
+    serializer = TestingSerializer.new(object)
+
+    assert_equal({ foo: 'foo', bar: ['bar'] }, serializer.as_json(option: true))
+  end
+
   def object
     TestObject.new('foo', 'bar', 'quux')
   end

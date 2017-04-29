@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 class Serializr
-  VERSION = '0.3.0'
+  VERSION = '0.4.0'
 end

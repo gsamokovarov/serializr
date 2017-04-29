@@ -54,7 +54,7 @@ class Serializr
     @options = options
   end
 
-  def as_json
+  def as_json(*)
     Hash[self.class.attributes.map do |attr|
       [attr, public_send(attr).as_json]
     end]

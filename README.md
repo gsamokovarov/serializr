@@ -117,9 +117,6 @@ end
 
 And this is how you drop `Action View` off your API's, kids!
 
-(_Not really, but anyway, I have the stage now, I do the typing. Fuck off and
-call my therapist!_)
-
 ### 👆 Last Thing
 
 To fill the API cliché, we need to go over one last file:

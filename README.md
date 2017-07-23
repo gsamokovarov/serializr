@@ -164,7 +164,7 @@ class ApplicationSerializer < Serializr
   #
   # No extra DSL, but still: clean, consise and flexible view code.
   def render_one(object, serializer: nil)
-    return unless object
+    return if object.nil?
 
     serializer ||= serializer_class_cache[object.class]
     serializer.new(object)
@@ -185,7 +185,7 @@ Serializr? Really? I know. It's fine.
 
 You can require `serializr`, you can require `serializer` as well. The
 constants? Both of `Serializr` and `Serializer` point to the same thing. Same
-for the generators. Use whatever your brain and 🖐 like.
+for the generators. Use whatever your brain and 🖐  fingers) like.
 
 ## Contributing
 

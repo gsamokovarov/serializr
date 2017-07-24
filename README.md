@@ -185,7 +185,7 @@ Serializr? Really? I know. It's fine.
 
 You can require `serializr`, you can require `serializer` as well. The
 constants? Both of `Serializr` and `Serializer` point to the same thing. Same
-for the generators. Use whatever your brain and 🖐  fingers) like.
+for the generators. Use whatever your brain and 🖐 (fingers) like.
 
 ## Contributing
 

@@ -100,7 +100,7 @@ class FriendsController < ApplicationController
 end
 ```
 
-Being explicit here may have performance benefits, as to guess the Serializer
+Being explicit here may have performance benefits, as to guess the `Serializer`
 class to use, we need to unroll the collection. The explicit usage, unarguably,
 looks pretty awesome as well, so you can wow your friends! Which, is always
 cool, you know. 😎
@@ -117,7 +117,7 @@ end
 
 And this is how you drop `Action View` off your API's, kids!
 
-### 👆 Last Thing
+### ☝️  Last Thing
 
 To fill the API cliché, we need to go over one last file:
 `app/serializers/application_serializer.rb`. At first, it looks like this:
@@ -139,7 +139,7 @@ For example:
 class ApplicationSerializer < Serializr
   # You may need the routes helpers, so you can link between resources in your
   # JSON responses.
-  inlcude Rails.application.routes.url_helpers
+  include Rails.application.routes.url_helpers
 
   cattr_reader :serializer_class_cache do
     Hash.new do |hash, cls|
